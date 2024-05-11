@@ -10,6 +10,11 @@ RUN apk update; \
     apk add --no-cache libxslt-dev; \
     apk add --no-cache sqlite-dev; \
     apk add --no-cache openssl-dev; \
-    apk add --no-cache postgresql-dev;
+    apk add --no-cache postgresql-dev; \
+    apk add --no-cache "$PHPIZE_DEPS";
 
-RUN docker-php-ext-install pdo pdo_pgsql pdo_mysql mysqli zip soap gd
+RUN docker-php-ext-install pdo pdo_pgsql pdo_mysql mysqli zip soap gd opcache;
+
+RUN pecl install xdebug && docker-php-ext-enable xdebug;
+
+RUN apk del "$PHPIZE_DEPS";
