@@ -12,4 +12,4 @@ RUN apk update; \
     apk add --no-cache openssl-dev; \
     apk add --no-cache postgresql-dev;
 
-RUN docker-php-ext-install pdo pdo_pgsql pdo_mysql mysqli zip soap gd
+RUN docker-php-ext-install pdo pdo_pgsql pdo_mysql mysqli zip soap gd opcache;
